@@ -86,12 +86,18 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1599764054184</updated>
-      <workItem from="1599764055597" duration="7941000" />
+      <workItem from="1599764055597" duration="9310000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+    <option name="exactExcludedFiles">
+      <list>
+        <option value="$PROJECT_DIR$/src/eslint.action.js.map" />
+        <option value="$PROJECT_DIR$/src/eslint.action.js" />
+      </list>
+    </option>
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">

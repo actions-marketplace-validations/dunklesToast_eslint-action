@@ -89,6 +89,7 @@ var ESLintAction = /** @class */ (function () {
                     case 0:
                         if (this.authToken === null) {
                             core_1.info("No authToken provided. Won't post comment");
+                            core_1.info(body);
                             return [2 /*return*/];
                         }
                         kit = github_1.getOctokit(this.authToken);
@@ -107,4 +108,5 @@ var ESLintAction = /** @class */ (function () {
     };
     return ESLintAction;
 }());
-new ESLintAction();
+var x = new ESLintAction();
+//# sourceMappingURL=eslint.action.js.map

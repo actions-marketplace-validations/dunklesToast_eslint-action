@@ -17,7 +17,7 @@
     "outDir": "dist"
   },
   "include": [
-    "src"
+    "src/eslint.action.ts"
   ],
   "exclude": ["node_modules"]
 }

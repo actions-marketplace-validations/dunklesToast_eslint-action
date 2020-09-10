@@ -1,15 +1,7 @@
 import { getInput, info } from '@actions/core';
 import { context, getOctokit } from '@actions/github';
-import { Context } from '@actions/github/lib/context';
 import { ESLint } from 'eslint';
-
 class ESLintAction {
-    private readonly eslintFolder: string;
-
-    private readonly authToken: string | null;
-
-    private readonly context: Context;
-
     constructor() {
         this.eslintFolder = getInput('eslintFolder') || '.';
         this.authToken = getInput('authToken') || null;
@@ -21,8 +13,7 @@ class ESLintAction {
             await this.comment(body);
         });
     }
-
-    private async runLinter() {
+    async runLinter() {
         const linter = new ESLint({});
         const results = await linter.lintFiles(this.eslintFolder);
         let comment = `# ESLint found ${results.length} files with issues\r\n`;
@@ -34,11 +25,9 @@ class ESLintAction {
         });
         return comment;
     }
-
-    private async comment(body: string) {
+    async comment(body) {
         if (this.authToken === null) {
             info("No authToken provided. Won't post comment");
-            info(body);
             return;
         }
         const kit = getOctokit(this.authToken);
@@ -50,5 +39,5 @@ class ESLintAction {
         });
     }
 }
-
-const x = new ESLintAction();
+new ESLintAction();
+//# sourceMappingURL=eslint.action.js.map

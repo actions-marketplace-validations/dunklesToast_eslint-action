@@ -3,12 +3,14 @@
   "version": "0.0.1",
   "description": "Action Test",
   "main": "dist/eslint.action.js",
+  "source": "src/eslint.action.ts",
   "author": "Tom Sacher",
   "license": "UNLICENSED",
   "private": false,
   "scripts": {
-    "build": "tsc --sourceMap false",
-    "prepack": "yarn build"
+    "build": "tsc",
+    "prepack": "yarn build",
+    "postbuild": "mkdir -p dist/node_modules && npm ls --only prod --parseable | tail -n +2 | xargs -I % cp -r % dist/node_modules"
   },
   "dependencies": {
     "@actions/core": "^1.2.5",
