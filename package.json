@@ -7,7 +7,7 @@
   "license": "UNLICENSED",
   "private": false,
   "scripts": {
-    "build": "microbundle --tsconfig tsconfig.json --target node --external child_process,os --no-pkg-main -f commonjs --compress --sourcemap false",
+    "build": "tsc --sourceMap false",
     "prepack": "yarn build"
   },
   "dependencies": {
