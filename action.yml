@@ -1,0 +1,12 @@
+name: 'ESLint Check Action'
+description: 'Runs ESLint Checks and bails if there is a failure'
+inputs:
+    eslintBinary:
+        required: false
+        description: 'Where your ESLint binary is stored. Default to "node_modules/.bin/eslint"'
+    eslintFolder:
+        required: false
+        description: 'Where ESLint should look for the files. Defaults to "."'
+runs:
+    using: 'node12'
+    main: 'dist/eslint.action.js'
