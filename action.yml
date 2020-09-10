@@ -1,5 +1,8 @@
 name: 'ESLint Check Action'
 description: 'Runs ESLint Checks and bails if there is a failure'
+branding:
+    icon: 'check-circle'
+    color: 'blue'
 inputs:
     eslintBinary:
         required: false
