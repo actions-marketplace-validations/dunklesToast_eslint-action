@@ -1,33 +1,53 @@
-import { getInput } from '@actions/core';
-import { spawnSync } from 'child_process';
+import { getInput, info } from '@actions/core';
+import { context, getOctokit } from '@actions/github';
+import { Context } from '@actions/github/lib/context';
+import { ESLint } from 'eslint';
 
 class ESLintAction {
-    private readonly eslintBinary: string;
-
     private readonly eslintFolder: string;
 
+    private readonly authToken: string | null;
+
+    private readonly context: Context;
+
     constructor() {
-        this.eslintBinary = getInput('eslintBinary') || 'eslint';
         this.eslintFolder = getInput('eslintFolder') || '.';
-        console.log(`Starting ESLint GitHub Action`);
-        console.log('Configuration:');
-        console.log(`ESLint Binary: "${this.eslintBinary}"`);
-        console.log(`ESLint Folder: "${this.eslintFolder}"`);
-        this.runCommand();
+        this.authToken = getInput('authToken') || null;
+        this.context = context;
+        info(`Starting ESLint GitHub Action`);
+        info('Configuration:');
+        info(`ESLint Folder: "${this.eslintFolder}"`);
+        this.runLinter().then(async (body) => {
+            await this.comment(body);
+        });
     }
 
-    private runCommand() {
-        const { status, stdout, stderr, error } = spawnSync(this.eslintBinary, [this.eslintFolder]);
-        if (status === 0) {
-            console.log('✓ ESLint returned no errors');
-        } else {
-            console.error('× ESLint returned an error.');
-            console.error(stderr?.toString());
-            console.error(stdout?.toString());
-            if (error?.message) console.log(error.message);
-            process.exit(status || 1);
+    private async runLinter() {
+        const linter = new ESLint({});
+        const results = await linter.lintFiles(this.eslintFolder);
+        let comment = `# ESLint found ${results.length} files with issues\r\n`;
+        results.forEach((result) => {
+            comment += `### ${result.errorCount} issues in ${result.filePath}\r\n`;
+            result.messages.forEach((message) => {
+                comment += `${message.message}\r\n`;
+            });
+        });
+        return comment;
+    }
+
+    private async comment(body: string) {
+        if (this.authToken === null) {
+            info("No authToken provided. Won't post comment");
+            return;
         }
+        const kit = getOctokit(this.authToken);
+        await kit.issues.createComment({
+            issue_number: context.issue.number,
+            body,
+            repo: context.repo.repo,
+            owner: context.repo.owner,
+        });
     }
 }
 
-const x = new ESLintAction();
+new ESLintAction();

@@ -10,6 +10,9 @@ inputs:
     eslintFolder:
         required: false
         description: 'Where ESLint should look for the files. Defaults to "."'
+    authToken:
+        required: false
+        description: 'GitHub AuthToken (${{ secrets.GITHUB_TOKEN }})'
 runs:
     using: 'node12'
     main: 'dist/eslint.action.js'
