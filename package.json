@@ -8,9 +8,7 @@
   "license": "UNLICENSED",
   "private": false,
   "scripts": {
-    "build": "yarn clear && microbundle --tsconfig tsconfig.json --compress --target node -f modern && yarn prepare",
-    "prepare": "cp package.json yarn.lock dist && cd dist && yarn --production",
-    "clear": "rm -rf dist && mkdir -p dist"
+    "build": "microbundle --tsconfig tsconfig.json --compress --target node -f commonjs --sourcemap false"
   },
   "dependencies": {
     "@actions/core": "^1.2.5",
