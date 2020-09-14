@@ -8,30 +8,28 @@
       </path>
       <path>
         <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="GROUP_NODE:feat" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
         <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
       </path>
       <path>
         <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
         <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
         <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="GROUP_NODE:feat" type="e8cecc67:BranchNodeDescriptor" />
       </path>
     </expand>
     <select />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="83445270-05e6-4bd2-b09b-78026a488a5d" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../../GitHubActionTest/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../GitHubActionTest/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/action.yml" beforeDir="false" afterPath="$PROJECT_DIR$/action.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/eslint.action.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/eslint.action.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/eslint.action.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/eslint.action.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/eslint.action.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/eslint.action.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,7 +47,7 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../GitHubActionTest" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1hKe8jjfLSEYmYIxdHFUYPln357" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -86,18 +84,13 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1599764054184</updated>
-      <workItem from="1599764055597" duration="9310000" />
+      <workItem from="1599764055597" duration="9634000" />
+      <workItem from="1600098322084" duration="1419000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
-    <option name="exactExcludedFiles">
-      <list>
-        <option value="$PROJECT_DIR$/src/eslint.action.js.map" />
-        <option value="$PROJECT_DIR$/src/eslint.action.js" />
-      </list>
-    </option>
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -109,11 +102,16 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
     <state x="405" y="210" key="SettingsEditor" timestamp="1599764415867">
       <screen x="0" y="23" width="1792" height="1097" />
     </state>
     <state x="405" y="210" key="SettingsEditor/0.23.1792.1097@0.23.1792.1097" timestamp="1599764415867" />
+    <state x="-1910" y="246" width="1900" height="1037" key="dock-window-1" timestamp="1600098752646">
+      <screen x="-1920" y="213" width="1920" height="1080" />
+    </state>
+    <state x="-1910" y="246" width="1900" height="1037" key="dock-window-1/0.0.3440.1440/-1920.213.1920.1080/3440.419.1792.1120@0.0.3440.1440" timestamp="1600098752646" />
   </component>
 </project>

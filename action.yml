@@ -4,9 +4,9 @@ branding:
     icon: 'check-circle'
     color: 'blue'
 inputs:
-    eslintBinary:
+    eslintConfig:
         required: false
-        description: 'Where your ESLint binary is stored. Default to "node_modules/.bin/eslint"'
+        description: 'Path to your ESLint Config. Defaults to ".eslintrc.js"'
     eslintFolder:
         required: false
         description: 'Where ESLint should look for the files. Defaults to "."'

@@ -6,12 +6,15 @@ import { ESLint } from 'eslint';
 class ESLintAction {
     private readonly eslintFolder: string;
 
+    private readonly eslintConfig: string;
+
     private readonly authToken: string | null;
 
     private readonly context: Context;
 
     constructor() {
         this.eslintFolder = getInput('eslintFolder') || '.';
+        this.eslintConfig = getInput('eslintConfig') || '.eslintrc.js';
         this.authToken = getInput('authToken') || null;
         this.context = context;
         info(`Starting ESLint GitHub Action`);
@@ -23,7 +26,9 @@ class ESLintAction {
     }
 
     private async runLinter() {
-        const linter = new ESLint({});
+        const linter = new ESLint({
+            overrideConfigFile: this.eslintConfig,
+        });
         const results = await linter.lintFiles(this.eslintFolder);
         let comment = `# ESLint found ${results.length} files with issues\r\n`;
         results.forEach((result) => {
