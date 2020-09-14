@@ -2,6 +2,7 @@ import { getInput, info } from '@actions/core';
 import { context, getOctokit } from '@actions/github';
 import { Context } from '@actions/github/lib/context';
 import { ESLint } from 'eslint';
+import * as fs from 'fs';
 
 class ESLintAction {
     private readonly eslintFolder: string;
@@ -10,12 +11,15 @@ class ESLintAction {
 
     private readonly authToken: string | null;
 
+    private readonly safeArtifact: boolean;
+
     private readonly context: Context;
 
     constructor() {
         this.eslintFolder = getInput('eslintFolder') || '.';
         this.eslintConfig = getInput('eslintConfig') || '.eslintrc.js';
         this.authToken = getInput('authToken') || null;
+        this.safeArtifact = !!getInput('safeArtifact') || false;
         this.context = context;
         info(`Starting ESLint GitHub Action`);
         info('Configuration:');
@@ -31,6 +35,8 @@ class ESLintAction {
         });
         const results = await linter.lintFiles(this.eslintFolder);
         let comment = `# ESLint found ${results.length} files with issues\r\n`;
+        if (this.safeArtifact) fs.writeFileSync('eslintResult.json', JSON.stringify(results));
+
         results.forEach((result) => {
             comment += `### ${result.errorCount} issues in ${result.filePath}\r\n`;
             result.messages.forEach((message) => {

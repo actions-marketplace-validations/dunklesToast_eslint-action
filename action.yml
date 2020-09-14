@@ -10,6 +10,9 @@ inputs:
     eslintFolder:
         required: false
         description: 'Where ESLint should look for the files. Defaults to "."'
+    safeArtifacts:
+        required: false
+        description: 'Whether we should create a file with the ESLint Result. File Name is eslintResult.json'
     authToken:
         required: false
         description: 'GitHub AuthToken'
