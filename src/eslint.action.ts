@@ -24,6 +24,9 @@ class ESLintAction {
         info(`Starting ESLint GitHub Action`);
         info('Configuration:');
         info(`ESLint Folder: "${this.eslintFolder}"`);
+        info(`ESLint Config: "${this.eslintConfig}"`);
+        info(`Auth Token   : "${this.authToken ? 'provided' : 'none'}"`);
+        info(`Safe Artifact: "${this.safeArtifact}"`);
         this.runLinter().then(async (body) => {
             await this.comment(body);
         });
@@ -34,14 +37,25 @@ class ESLintAction {
             overrideConfigFile: this.eslintConfig,
         });
         const results = await linter.lintFiles(this.eslintFolder);
-        let comment = `# ESLint found ${results.length} files with issues\r\n`;
-        if (this.safeArtifact) fs.writeFileSync('eslintResult.json', JSON.stringify(results));
+        let comment = `# ESLint found ${results.length} file${results.length === 1 ? '' : 's'} with issues\r\n`;
+        if (this.safeArtifact) {
+            info('Saving Artifact...');
+            fs.writeFileSync('eslintResult.json', JSON.stringify(results));
+        }
 
         results.forEach((result) => {
-            comment += `### ${result.errorCount} issues in ${result.filePath}\r\n`;
-            result.messages.forEach((message) => {
-                comment += `${message.message}\r\n`;
-            });
+            if (result.errorCount !== 0 || result.warningCount !== 0) comment += `### ${result.filePath}\r\n`;
+            if (result.errorCount !== 0) {
+                comment += `####${result.errorCount} error${result.errorCount === 1 ? '' : 's'}\r\n`;
+                result.messages.forEach((message) => {
+                    comment += `${message.message}\r\n`;
+                });
+            } else if (result.warningCount !== 0) {
+                comment += `####${result.warningCount} warning${result.warningCount === 1 ? '' : 's'}\r\n`;
+                result.messages.forEach((message) => {
+                    comment += `${message.line}:${message.column} ${message.message}\r\n`;
+                });
+            }
         });
         return comment;
     }
